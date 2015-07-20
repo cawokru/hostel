@@ -18,6 +18,7 @@
   <tbody>
     <% @hotels.each do |hotel| %>
       <tr>
+        <td><%= image_tag hotel.photo.url(:medium) %></td>
         <td><%= hotel.title %></td>
         <td><%= hotel.rating %></td>
         <td><%= hotel.breakfast %></td>
