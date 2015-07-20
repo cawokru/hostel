@@ -3,7 +3,6 @@
 one:
   title: MyString
   rating: 1
-  default: 
   breakfast: false
   room_description: MyText
   photo: MyString
@@ -14,7 +13,6 @@ one:
 two:
   title: MyString
   rating: 1
-  default: 
   breakfast: false
   room_description: MyText
   photo: MyString

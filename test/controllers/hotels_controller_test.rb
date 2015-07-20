@@ -18,7 +18,7 @@ class HotelsControllerTest < ActionController::TestCase
 
   test "should create hotel" do
     assert_difference('Hotel.count') do
-      post :create, hotel: { address_id: @hotel.address_id, breakfast: @hotel.breakfast, default: @hotel.default, float: @hotel.float, photo: @hotel.photo, price: @hotel.price, rating: @hotel.rating, room_description: @hotel.room_description, title: @hotel.title }
+      post :create, hotel: { address_id: @hotel.address_id, breakfast: @hotel.breakfast, float: @hotel.float, photo: @hotel.photo, price: @hotel.price, rating: @hotel.rating, room_description: @hotel.room_description, title: @hotel.title }
     end
 
     assert_redirected_to hotel_path(assigns(:hotel))
@@ -35,7 +35,7 @@ class HotelsControllerTest < ActionController::TestCase
   end
 
   test "should update hotel" do
-    patch :update, id: @hotel, hotel: { address_id: @hotel.address_id, breakfast: @hotel.breakfast, default: @hotel.default, float: @hotel.float, photo: @hotel.photo, price: @hotel.price, rating: @hotel.rating, room_description: @hotel.room_description, title: @hotel.title }
+    patch :update, id: @hotel, hotel: { address_id: @hotel.address_id, breakfast: @hotel.breakfast, float: @hotel.float, photo: @hotel.photo, price: @hotel.price, rating: @hotel.rating, room_description: @hotel.room_description, title: @hotel.title }
     assert_redirected_to hotel_path(assigns(:hotel))
   end
 
