@@ -1,44 +1,43 @@
-<%= image_tag @hotel.photo.url(:medium) %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag @hotel.photo.url(:medium) %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @hotel.title %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @hotel.rating %>
-</p>
-
-<p>
-  <strong>Breakfast:</strong>
-  <%= @hotel.breakfast %>
-</p>
-
-<p>
-  <strong>Room description:</strong>
-  <%= @hotel.room_description %>
-</p>
-
-<p>
-  <strong>Photo:</strong>
-  <%= @hotel.photo %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @hotel.price %>
-</p>
-
-<p>
-  <strong>Float:</strong>
-  <%= @hotel.float %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @hotel.address %>
-</p>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+                <tr>
+                  <td><strong>Title:</strong></td>
+                  <td><%= @hotel.title %></td>
+                </tr>
+                <tr>
+                  <td><strong>Rating:</strong></td>
+                  <td><%= @hotel.rating %></td>
+                </tr>
+                <tr>
+                  <td><strong>Breakfast</strong></td>
+                  <td><%= @hotel.breakfast %></td>
+                </tr>
+                <tr>
+                  <td><strong>Room description:</strong></td>
+                  <td><%= @hotel.room_description %></td>
+                </tr>
+                <tr>
+                  <td><strong>Price:</strong></td>
+                  <td><%= @hotel.price %></td>
+                </tr>
+                <tr>
+                  <td><strong>Address:</strong></td>
+                  <td><%= @hotel.address %></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_hotel_path(@hotel) %> |
 <%= link_to 'Back', hotels_path %>

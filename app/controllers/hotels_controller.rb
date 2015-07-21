@@ -1,10 +1,12 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /hotels
   # GET /hotels.json
   def index
     @hotels = Hotel.all
+    @top_hotels = Hotel.order("rating DESC").limit(5)
   end
 
   # GET /hotels/1
@@ -14,7 +16,7 @@ class HotelsController < ApplicationController
 
   # GET /hotels/new
   def new
-    @hotel = Hotel.new
+    @hotel = current_user.hotels.build
   end
 
   # GET /hotels/1/edit
@@ -24,7 +26,7 @@ class HotelsController < ApplicationController
   # POST /hotels
   # POST /hotels.json
   def create
-    @hotel = Hotel.new(hotel_params)
+    @hotel = current_user.hotels.build(hotel_params)
 
     respond_to do |format|
       if @hotel.save

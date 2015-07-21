@@ -42,3 +42,5 @@ gem 'devise', '~> 3.4.1'
 
 # Images
 gem 'paperclip', '~> 4.2.1'
+
+gem 'bootstrap-sass', '~> 3.2.0'
