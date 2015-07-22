@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                   <td><strong>Breakfast</strong></td>
-                  <td><%= @hotel.breakfast %></td>
+                  <td><%= @hotel.breakfast ? 'Yes' : 'No' %></td>
                 </tr>
                 <tr>
                   <td><strong>Room description:</strong></td>
@@ -29,11 +29,35 @@
                 </tr>
                 <tr>
                   <td><strong>Address:</strong></td>
-                  <td><%= @hotel.address %></td>
+                  <td>
+                    <% if @address.blank? %>
+                        <p><%= link_to "Add", new_hotel_address_path(@hotel), class: "btn btn-success" %></p>
+                    <% else %>
+                        <p><%= @address.country + " " + @address.state + " " + @address.city + " " + @address.street %></p>
+                        <p><%= link_to "Change", edit_hotel_address_path(@hotel, @address), class: "btn btn-success" %></p>
+                    <% end %>
+                  </td>
                 </tr>
             </tbody>
           </table>
         </div>
+      </div>
+
+      <div class="col-md-7 col-md-offset-1">
+        <h1 class="comment_title">Comments:</h1>
+
+        <% if @comments.blank? %>
+            <h3>No comments yet. Be the first!</h3>
+        <% else %>
+            <% @comments.each do |comment|%>
+                <div class="comments">
+                  <div class="star-rating" data-score= <%= comment.rating %> ></div>
+                  <p><%= comment.text %></p>
+                </div>
+            <% end %>
+        <% end %>
+
+        <%= link_to "Add comment", new_hotel_comment_path(@hotel), class: "btn btn-danger" %>
       </div>
     </div>
   </div>
@@ -41,3 +65,13 @@
 
 <%= link_to 'Edit', edit_hotel_path(@hotel) %> |
 <%= link_to 'Back', hotels_path %>
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>

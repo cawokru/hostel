@@ -1,0 +1,12 @@
+<div class="col-sm-6 col-md-3">
+  <div class="thumbnail">
+    <%= link_to (image_tag hotel.photo.url(:medium), class:'photo'), hotel%>
+  </div>
+  <div class="caption">
+    <h4><%= hotel.title %></h4>
+    <p>
+      <span>Stars: <%= hotel.rating %></span>
+      <span class="price pull-right"> $<%= hotel.price %></span>
+    </p>
+  </div>
+</div>

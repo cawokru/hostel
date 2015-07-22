@@ -1,15 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_hotel
   before_action :authenticate_user!
-
-  respond_to :html
-
-  def index
-    @comments = Comment.all
-  end
-
-  def show
-  end
 
   def new
     @comment = Comment.new
@@ -21,10 +13,11 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
+    @comment.hotel_id = @hotel.id
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @hotel, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -36,7 +29,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @hotel, notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -48,7 +41,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to @hotel, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -61,4 +54,8 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:rating, :text)
     end
+
+  def set_hotel
+    @hotel = Hotel.find(params[:hotel_id])
+  end
 end

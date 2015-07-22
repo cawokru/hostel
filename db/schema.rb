@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721162312) do
+ActiveRecord::Schema.define(version: 20150721211946) do
 
   create_table "addresses", force: true do |t|
     t.string   "country"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150721162312) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "hotel_id"
   end
 
   create_table "hotels", force: true do |t|
@@ -37,9 +38,7 @@ ActiveRecord::Schema.define(version: 20150721162312) do
     t.boolean  "breakfast"
     t.text     "room_description"
     t.string   "photo"
-    t.string   "price"
-    t.string   "float"
-    t.integer  "address_id"
+    t.float    "price",              limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -48,8 +47,6 @@ ActiveRecord::Schema.define(version: 20150721162312) do
     t.datetime "photo_updated_at"
     t.integer  "user_id"
   end
-
-  add_index "hotels", ["address_id"], name: "index_hotels_on_address_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

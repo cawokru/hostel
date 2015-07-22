@@ -1,4 +1,4 @@
-<%= form_for@hotel, html: {multipart: true}  do |f| %>
+<%= form_for @hotel, html: {multipart: true}  do |f| %>
   <% if @hotel.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@hotel.errors.count, "error") %> prohibited this hotel from being saved:</h2>
@@ -34,14 +34,6 @@
   <div class="field">
     <%= f.label :price %><br>
     <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :float %><br>
-    <%= f.text_field :float %>
-  </div>
-  <div class="field">
-    <%= f.label :address_id %><br>
-    <%= f.text_field :address_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

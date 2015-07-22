@@ -6,12 +6,14 @@ class HotelsController < ApplicationController
   # GET /hotels.json
   def index
     @hotels = Hotel.all
-    @top_hotels = Hotel.order("rating DESC").limit(5)
+    @top_hotels = Hotel.by_rating.limit(5)
   end
 
   # GET /hotels/1
   # GET /hotels/1.json
   def show
+    @address = Address.where(hotel_id: @hotel.id).first
+    @comments = Comment.where(hotel_id: @hotel.id).order("created_at DESC")
   end
 
   # GET /hotels/new
@@ -71,6 +73,6 @@ class HotelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hotel_params
-      params.require(:hotel).permit(:title, :rating, :breakfast, :room_description, :photo, :price, :float, :address_id)
+      params.require(:hotel).permit(:title, :rating, :breakfast, :room_description, :photo, :price)
     end
 end
